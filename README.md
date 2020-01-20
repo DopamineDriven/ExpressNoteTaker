@@ -1,164 +1,45 @@
-# ExpressNoteTaker
+# ExpressNoteTakingApp
 
- 
-# Unit 11 Express Homework: Note Taker
+# User overview
 
-Create an application that can be used to write, save, and delete notes. This application will use an express backend and save and retrieve note data from a JSON file.
+This app allows users to read stored notes, write and store new notes, and delete previously stored notes as desired. This app is device responsive and deployed on heroku, a cloud-based PaaS, so user notes can be retrieved from any device. This app is perfect for users that work with large amounts of information as it provides a convenient method for logging and retrieving information.
 
+# Technical Overview
 
-The application frontend has already been created, it's your job to build the backend and connect the two.
+## Heroku Deployed App
+https://express-note-taking-app.herokuapp.com/notes
 
+This app was deployed using Heroku. Heroku is a PaaS (Platform as a Service); apps are deployed from the cloud. Locally, this app runs on PORT = 4040 (https://localhost:4040). The following code is necessary for deploying a cloud-based app: `const PORT = process.env.PORT || 4040`. Why? if PORT was simpy equal to 4040, it would only run locally but would not run on a PaaS such as Heroku or Amazon AWS. `process.env.PORT || 4040` implies that PORT will run on whatever is in the environment OR 4040 if no other environmental variable PORT exists. Heroku provides an env variable PORT, foe example.  
 
-The following HTML routes should be created:
+## Use JSON db to store notes
 
+User input data is stored in a json file. The fs npm (file-system) is required to read stored notes and write new notes. It is also required to delete notes. That said, deleting notes requires an additional variable; id. Id generation is executed via the utilization of a universally unique identifier (uuid) npm. Interestingly, UUIDs are of a fixed size at 128 bits. The uuid npm generates RFC4122 UUIDs. Notes are stored in the db.json file as follows:
+  {
+    "title": "This is my first live note",
+    "text": "This is the first live note",
+    "id": "0c599cd3-edc3-47bf-9c1a-2edd17956c79"
+  }
 
-GET /notes - Should return the notes.html file.
+## Input Validation Error Handling
 
+The incorporation of an inputValidation function acts as error handling middleware in this program. It prevents users from storing incomplete data. It is called as a paramter in the function for posting a new note. Essentially, it prevents the user from saving null or incomplete data. This is achieved in the launched app by disallowing saving until both title and text fields are not blank. The save icon does not appear until aforementioned requirements are met. 
 
-GET * - Should return the index.html file
 
+## Nodemon
 
+Nodemon npm is a tool for node.js app development. It automatically restarts the node application (and in doing so refreshes the server) upon detecting file changes in the directory. To start nodemon, navigate to the terminal and type "npm start". Nodemon must also be called in the package.json file as follows:
 
+"scripts": {
+    "start": "nodemon server.js"
+  }, 
 
-The application should have a db.json file on the backend that will be used to store and retrieve notes using the fs module.
+This method is exceedingly more efficient than manually restarting the server after each file modification throughout the development process.  
 
-
-The following API routes should be created:
-
-
-GET /api/notes - Should read the db.json file and return all saved notes as JSON.
-
-
-POST /api/notes - Should recieve a new note to save on the request body, add it to the db.json file, and then return the new note to the client.
-
-
-DELETE /api/notes/:id - Should recieve a query paramter containing the id of a note to delete. This means you'll need to find a way to give each note a unique id when it's saved. In order to delete a note, you'll need to read all notes from the db.json file, remove the note with the given id property, and then rewrite the notes to the db.json file.
-
-## Business Context
-
-When organizing your day, it is important to have a way of tracking the work that you're getting done. Rather than writing this information down, you'll be creating an application that will save everything you need to do in a file that can be editted.
-
-## Minimum Requirements
-
-* Functional, deployed application.
-
-* GitHub repository with a unique name and a README describing project.
-
-* The application allows the user to create a note with a title and description.
-
-* A user has the ability to delete a note.
-
-* The application uses a `json` file to store notes.
-
-* The application uses an Express server to serve all API routes.
-
-* The application uses an Express server to serve all client-side routes.
-
-- - -
-
-## Commit Early and Often
-
-One of the most important skills to master as a web developer is version control. Building the habit of committing via Git is important for two reasons:
-
-* Your commit history is a signal to employers that you are actively working on projects and learning new skills.
-
-* Your commit history allows you to revert your code base in the event that you need to return to a previous state.
-
-Follow these guidelines for committing:
-
-* Make single-purpose commits for related changes to ensure a clean, manageable history. If you are fixing two issues, make two commits.
-
-* Write descriptive, meaningful commit messages so that you and anyone else looking at your repository can easily understand its history.
-
-* Don't commit half-done work, for the sake of your collaborators (and your future self!).
-
-* Test your application before you commit to ensure functionality at every step in the development process.
-
-We would like you to have more than 200 commits by graduation, so commit early and often!
-
-## Submission on BCS
-
-You are required to submit the following:
-
-* An animated GIF demonstrating the app functionality
-
-* A generated PDF of your GitHub profile
-
-* The URL of the GitHub repository
-
-- - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
-
-# Unit 11 Express Homework: Note Taker
-
-## Description
-
-Create an application that can be used to write, save, and delete notes. This application will use an express backend and save and retrieve note data from a JSON file.
-
-* The application frontend has already been created, it's your job to build the backend and connect the two.
-
-* The following HTML routes should be created:
-
-  * GET `/notes` - Should return the `notes.html` file.
-
-  * GET `*` - Should return the `index.html` file
-
-* The application should have a `db.json` file on the backend that will be used to store and retrieve notes using the `fs` module.
-
-* The following API routes should be created:
-
-  * GET `/api/notes` - Should read the `db.json` file and return all saved notes as JSON.
-
-  * POST `/api/notes` - Should recieve a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client.
-
-  * DELETE `/api/notes/:id` - Should recieve a query paramter containing the id of a note to delete. This means you'll need to find a way to give each note a unique `id` when it's saved. In order to delete a note, you'll need to read all notes from the `db.json` file, remove the note with the given `id` property, and then rewrite the notes to the `db.json` file.
-
-## User Story
-
-AS A user, I want to be able to write and save notes
-
-I WANT to be able to delete notes I've written before
-
-SO THAT I can organize my thoughts and keep track of tasks I need to complete
-
-## Business Context
-
-For users that need to keep track of a lot of information, it's easy to forget or be unable to recall something important. Being able to take persistent notes allows users to have written information available when needed.
-
-## Acceptance Criteria
-
-Application should allow users to create and save notes.
-
-Application should allow users to view previously saved notes.
-
-Application should allow users to delete previously saved notes.
-
-- - -
-
-## Commit Early and Often
-
-One of the most important skills to master as a web developer is version control. Building the habit of committing via Git is important for two reasons:
-
-* Your commit history is a signal to employers that you are actively working on projects and learning new skills.
-
-* Your commit history allows you to revert your codebase in the event that you need to return to a previous state.
-
-Follow these guidelines for committing:
-
-* Make single-purpose commits for related changes to ensure a clean, manageable history. If you are fixing two issues, make two commits.
-
-* Write descriptive, meaningful commit messages so that you and anyone else looking at your repository can easily understand its history.
-
-* Don't commit half-done work, for the sake of your collaborators (and your future self!).
-
-* Test your application before you commit to ensure functionality at every step in the development process.
-
-We would like you to have well over 200 commits by graduation, so commit early and often!
-
-## Submission on BCS
-
-You are required to submit the following:
-
-* The URL of the deployed application
-
-* The URL of the GitHub repository
+## npm dependencies
+- nodemon https://www.npmjs.com/package/nodemon
+- express https://www.npmjs.com/package/express
+- body-parser https://www.npmjs.com/package/body-parser
+- fs https://www.npmjs.com/package/fs
+- uuid https://www.npmjs.com/package/uuid
+- path https://www.npmjs.com/package/path
+- fontawesome https://www.npmjs.com/package/fontawesome
