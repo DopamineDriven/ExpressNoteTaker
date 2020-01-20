@@ -9,7 +9,7 @@ This app allows users to read stored notes, write and store new notes, and delet
 ## Heroku Deployed App
 https://express-note-taking-app.herokuapp.com/notes
 
-This app was deployed using Heroku. Heroku is a PaaS (Platform as a Service); apps are deployed from the cloud. Locally, this app runs on PORT = 4040 (https://localhost:4040). The following code is necessary for deploying a cloud-based app: `const PORT = process.env.PORT || 4040`. Why? if PORT was simpy equal to 4040, it would only run locally but would not run on a PaaS such as Heroku or Amazon AWS. `process.env.PORT || 4040` implies that PORT will run on whatever is in the environment OR 4040 if no other environmental variable PORT exists. Heroku provides an env variable PORT, foe example.  
+This app was deployed using Heroku. Heroku is a PaaS (Platform as a Service); apps are deployed from the cloud. Locally, this app runs on PORT = 4040 (https://localhost:4040). The following code is necessary for deploying a cloud-based app: `const PORT = process.env.PORT || 4040`. Why? if PORT was simpy equal to 4040, it would only run locally but would not run on a PaaS such as Heroku or Amazon AWS. `process.env.PORT || 4040` implies that PORT will run on whatever is in the environment OR 4040 if no other environmental variable PORT exists. Heroku provides an env variable PORT, for example.  
 
 ## Use JSON db to store notes
 
