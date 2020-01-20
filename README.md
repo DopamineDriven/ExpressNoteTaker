@@ -13,7 +13,7 @@ This app was deployed using Heroku. Heroku is a PaaS (Platform as a Service); ap
 
 ## Use JSON db to store notes
 
-User input data is stored in a json file. The fs npm (file-system) is required to read stored notes and write new notes. It is also required to delete notes. That said, deleting notes requires an additional variable; id. Id generation is executed via the utilization of a universally unique identifier (uuid) npm. Interestingly, UUIDs are of a fixed size at 128 bits. The uuid npm generates RFC4122 UUIDs. Notes are stored in the db.json file as follows:
+User input data is stored in a json file. The fs (file-system) npm is required to read stored notes and write new notes. It is also required to delete notes. That said, deleting notes requires an additional variable; id. Id generation is executed via the utilization of a universally unique identifier (uuid) npm. Interestingly, UUIDs are of a fixed size at 128 bits. The uuid npm generates RFC4122 UUIDs. Notes are stored in the db.json file as follows:
   {
     "title": "This is my first live note",
     "text": "This is the first live note",
