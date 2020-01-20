@@ -1,6 +1,6 @@
 # ExpressNoteTakingApp
 
-# User overview
+# User Overview
 
 This app allows users to read stored notes, write and store new notes, and delete previously stored notes as desired. This app is device responsive and deployed on heroku, a cloud-based PaaS, so user notes can be retrieved from any device. This app is perfect for users that work with large amounts of information as it provides a convenient method for logging and retrieving information.
 
@@ -11,7 +11,7 @@ https://express-note-taking-app.herokuapp.com/notes
 
 This app was deployed using Heroku. Heroku is a PaaS (Platform as a Service); apps are deployed from the cloud. Locally, this app runs on PORT = 4040 (https://localhost:4040). The following code is necessary for deploying a cloud-based app: `const PORT = process.env.PORT || 4040`. Why? if PORT was simpy equal to 4040, it would only run locally but would not run on a PaaS such as Heroku or Amazon AWS. `process.env.PORT || 4040` implies that PORT will run on whatever is in the environment OR 4040 if no other environmental variable PORT exists. Heroku provides an env variable PORT, for example.  
 
-## Use JSON db to store notes
+## JSON db storage 
 
 User input data is stored in a json file. The fs (file-system) npm is required to read stored notes and write new notes. It is also required to delete notes. That said, deleting notes requires an additional variable; id. Id generation is executed via the utilization of a universally unique identifier (uuid) npm. Interestingly, UUIDs are of a fixed size at 128 bits. The uuid npm generates RFC4122 UUIDs. Notes are stored in the db.json file as follows:
   {
